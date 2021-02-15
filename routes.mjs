@@ -1,11 +1,14 @@
 import db from './models/index.mjs';
 
 // import your controllers here
+import initRoutesController from './controllers/routes.mjs';
+import initTripsController from './controllers/trips.mjs';
 
 export default function bindRoutes(app) {
+  // pass in the db for all items callbacks
+  const RoutesController = initRoutesController(db);
+  const TripsController = initTripsController(db);
 
-  // initialize the controller functions here
-  // pass in the db for all callbacks
-
-  // define your route matchers here using app
+  app.get('/routes', RoutesController.index);
+  app.get('/trips', TripsController.index);
 }
