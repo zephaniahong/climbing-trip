@@ -11,9 +11,12 @@ export default function initTripsController(db) {
 
   const create = async (request, response) => {
     try {
-      console.log(request);
-      db.Trip.create({ name: request.body });
-      response.send(200);
+      console.log('received request!!');
+      console.log(request.body.newtrip);
+      await db.Trip.create({ name: request.body.newtrip });
+      const trips = await db.Trip.findAll();
+      response.send({ trips });
+      // response.sendStatus(200);
     } catch (error) {
       console.log(error);
     }
