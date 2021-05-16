@@ -9,9 +9,20 @@ export default function initTripsController(db) {
       .catch((error) => console.log(error));
   };
 
+  const create = async (request, response) => {
+    try {
+      console.log(request);
+      db.Trip.create({ name: request.body });
+      response.send(200);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // return all methods we define in an object
   // refer to the routes file above to see this used
   return {
     index,
+    create,
   };
 }
