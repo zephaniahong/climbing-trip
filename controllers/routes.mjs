@@ -14,9 +14,28 @@ export default function initRoutesController(db) {
       .catch((error) => console.log(error));
   };
 
+  const create = async (request, response) => {
+    try {
+      const newRoute = await db.Route.create({
+        name: request.body.newRoute,
+        difficulty: request.body.newGrade,
+        tripId: request.body.tripId,
+      });
+      const routes = await db.Route.findAll({
+        where: {
+          tripId: request.body.tripId,
+        },
+      });
+      response.send(routes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // return all methods we define in an object
   // refer to the routes file above to see this used
   return {
     index,
+    create,
   };
 }
