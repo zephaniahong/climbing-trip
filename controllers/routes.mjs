@@ -3,11 +3,7 @@
 export default function initRoutesController(db) {
   const index = (req, res) => {
     const { tripId } = req.params;
-    db.Route.findAll({
-      where: {
-        tripId,
-      },
-    })
+    db.Route.findAll()
       .then((routes) => {
         res.send({ routes });
       })
