@@ -18,12 +18,12 @@ export default function initRoutesController(db) {
         tripId: request.body.tripId,
         order: 0,
       });
-      const routes = await db.Route.findAll({
-        where: {
-          tripId: request.body.tripId,
-        },
-      });
-      response.send(routes);
+      // const routes = await db.Route.findAll({
+      //   where: {
+      //     tripId: request.body.tripId,
+      //   },
+      // });
+      response.send(newRoute);
     } catch (error) {
       console.log(error);
     }
